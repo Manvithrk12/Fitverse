@@ -1,0 +1,19 @@
+// FITVERSE — Prisma Schema
+// Phase 0: connectivity placeholder only. Full entity set (User, Profile,
+// Workout, Nutrition, Progress, Gamification, Social, AI, etc.) is added in
+// later phases per the Database Design & ER Diagram Specification.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model HealthCheck {
+  id        String   @id @default(cuid())
+  status    String   @default("ok")
+  createdAt DateTime @default(now())
+}

@@ -1,0 +1,27 @@
+# Phase 0 scope: local PostgreSQL only, so the backend has a database to
+# connect to without requiring a local Postgres install.
+#
+# Full containerization of the frontend and backend applications themselves
+# is handled in Phase 14 (Docker) per the phase plan — not here.
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: fitverse-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: fitverse
+      POSTGRES_PASSWORD: fitverse
+      POSTGRES_DB: fitverse
+    ports:
+      - "5432:5432"
+    volumes:
+      - fitverse_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fitverse -d fitverse"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  fitverse_postgres_data:
