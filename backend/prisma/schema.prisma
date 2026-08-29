@@ -1,19 +1,45 @@
 // FITVERSE — Prisma Schema
-// Phase 0: connectivity placeholder only. Full entity set (User, Profile,
-// Workout, Nutrition, Progress, Gamification, Social, AI, etc.) is added in
-// later phases per the Database Design & ER Diagram Specification.
+// Phase 1: User + RefreshToken (authentication). Remaining entities
+// (Profile, Workout, Nutrition, Progress, Gamification, Social, AI, etc.)
+// are added in later phases per the Database Design & ER Diagram Spec.
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
 }
 
 datasource db {
   provider = "postgresql"
 }
 
-model HealthCheck {
-  id        String   @id @default(cuid())
-  status    String   @default("ok")
-  createdAt DateTime @default(now())
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  role         Role     @default(USER)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  refreshTokens RefreshToken[]
+}
+
+// Refresh tokens are stored hashed (never the raw token) so a logout or
+// rotation can actually revoke server-side, rather than just trusting the
+// client to discard it.
+model RefreshToken {
+  id        String    @id @default(cuid())
+  tokenHash String    @unique
+  userId    String
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([userId])
 }

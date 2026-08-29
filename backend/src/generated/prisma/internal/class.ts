@@ -20,7 +20,7 @@ const config: runtime.GetPrismaClientConfig = {
   "clientVersion": "7.9.1",
   "engineVersion": "e922089b7d7502aff4249d5da3420f6fa55fc6ad",
   "activeProvider": "postgresql",
-  "inlineSchema": "// FITVERSE — Prisma Schema\n// Phase 0: connectivity placeholder only. Full entity set (User, Profile,\n// Workout, Nutrition, Progress, Gamification, Social, AI, etc.) is added in\n// later phases per the Database Design & ER Diagram Specification.\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../src/generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nmodel HealthCheck {\n  id        String   @id @default(cuid())\n  status    String   @default(\"ok\")\n  createdAt DateTime @default(now())\n}\n",
+  "inlineSchema": "// FITVERSE — Prisma Schema\n// Phase 1: User + RefreshToken (authentication). Remaining entities\n// (Profile, Workout, Nutrition, Progress, Gamification, Social, AI, etc.)\n// are added in later phases per the Database Design & ER Diagram Spec.\n\ngenerator client {\n  provider     = \"prisma-client\"\n  output       = \"../src/generated/prisma\"\n  moduleFormat = \"cjs\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n}\n\nenum Role {\n  USER\n  ADMIN\n}\n\nmodel User {\n  id           String   @id @default(cuid())\n  email        String   @unique\n  passwordHash String\n  role         Role     @default(USER)\n  createdAt    DateTime @default(now())\n  updatedAt    DateTime @updatedAt\n\n  refreshTokens RefreshToken[]\n}\n\n// Refresh tokens are stored hashed (never the raw token) so a logout or\n// rotation can actually revoke server-side, rather than just trusting the\n// client to discard it.\nmodel RefreshToken {\n  id        String    @id @default(cuid())\n  tokenHash String    @unique\n  userId    String\n  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)\n  expiresAt DateTime\n  revokedAt DateTime?\n  createdAt DateTime  @default(now())\n\n  @@index([userId])\n}\n",
   "runtimeDataModel": {
     "models": {},
     "enums": {},
@@ -32,10 +32,10 @@ const config: runtime.GetPrismaClientConfig = {
   }
 }
 
-config.runtimeDataModel = JSON.parse("{\"models\":{\"HealthCheck\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"status\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
+config.runtimeDataModel = JSON.parse("{\"models\":{\"User\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"email\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"passwordHash\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"role\",\"kind\":\"enum\",\"type\":\"Role\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"updatedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"refreshTokens\",\"kind\":\"object\",\"type\":\"RefreshToken\",\"relationName\":\"RefreshTokenToUser\"}],\"dbName\":null},\"RefreshToken\":{\"fields\":[{\"name\":\"id\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"tokenHash\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"userId\",\"kind\":\"scalar\",\"type\":\"String\"},{\"name\":\"user\",\"kind\":\"object\",\"type\":\"User\",\"relationName\":\"RefreshTokenToUser\"},{\"name\":\"expiresAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"revokedAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"},{\"name\":\"createdAt\",\"kind\":\"scalar\",\"type\":\"DateTime\"}],\"dbName\":null}},\"enums\":{},\"types\":{}}")
 config.parameterizationSchema = {
-  strings: JSON.parse("[\"where\",\"HealthCheck.findUnique\",\"HealthCheck.findUniqueOrThrow\",\"orderBy\",\"cursor\",\"HealthCheck.findFirst\",\"HealthCheck.findFirstOrThrow\",\"HealthCheck.findMany\",\"data\",\"HealthCheck.createOne\",\"HealthCheck.createMany\",\"HealthCheck.createManyAndReturn\",\"HealthCheck.updateOne\",\"HealthCheck.updateMany\",\"HealthCheck.updateManyAndReturn\",\"create\",\"update\",\"HealthCheck.upsertOne\",\"HealthCheck.deleteOne\",\"HealthCheck.deleteMany\",\"having\",\"_count\",\"_min\",\"_max\",\"HealthCheck.groupBy\",\"HealthCheck.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"status\",\"createdAt\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"contains\",\"startsWith\",\"endsWith\",\"set\"]"),
-  graph: "KQkQBhoAACIAMBsAAAQAEBwAACIAMB0BAAAAAR4BACMAIR9AACQAIQEAAAABACABAAAAAQAgBhoAACIAMBsAAAQAEBwAACIAMB0BACMAIR4BACMAIR9AACQAIQADAAAABAAgAwAABQAwBAAAAQAgAwAAAAQAIAMAAAUAMAQAAAEAIAMAAAAEACADAAAFADAEAAABACADHQEAAAABHgEAAAABH0AAAAABAQgAAAkAIAMdAQAAAAEeAQAAAAEfQAAAAAEBCAAACwAwAQgAAAsAMAMdAQAoACEeAQAoACEfQAApACECAAAAAQAgCAAADgAgAx0BACgAIR4BACgAIR9AACkAIQIAAAAEACAIAAAQACACAAAABAAgCAAAEAAgAwAAAAEAIA8AAAkAIBAAAA4AIAEAAAABACABAAAABAAgAxUAACUAIBYAACcAIBcAACYAIAYaAAAaADAbAAAXABAcAAAaADAdAQAbACEeAQAbACEfQAAcACEDAAAABAAgAwAAFgAwFAAAFwAgAwAAAAQAIAMAAAUAMAQAAAEAIAYaAAAaADAbAAAXABAcAAAaADAdAQAbACEeAQAbACEfQAAcACEOFQAAHgAgFgAAIQAgFwAAIQAgIAEAAAABIQEAAAAEIgEAAAAEIwEAAAABJAEAAAABJQEAAAABJgEAAAABJwEAIAAhKAEAAAABKQEAAAABKgEAAAABCxUAAB4AIBYAAB8AIBcAAB8AICBAAAAAASFAAAAABCJAAAAABCNAAAAAASRAAAAAASVAAAAAASZAAAAAASdAAB0AIQsVAAAeACAWAAAfACAXAAAfACAgQAAAAAEhQAAAAAQiQAAAAAQjQAAAAAEkQAAAAAElQAAAAAEmQAAAAAEnQAAdACEIIAIAAAABIQIAAAAEIgIAAAAEIwIAAAABJAIAAAABJQIAAAABJgIAAAABJwIAHgAhCCBAAAAAASFAAAAABCJAAAAABCNAAAAAASRAAAAAASVAAAAAASZAAAAAASdAAB8AIQ4VAAAeACAWAAAhACAXAAAhACAgAQAAAAEhAQAAAAQiAQAAAAQjAQAAAAEkAQAAAAElAQAAAAEmAQAAAAEnAQAgACEoAQAAAAEpAQAAAAEqAQAAAAELIAEAAAABIQEAAAAEIgEAAAAEIwEAAAABJAEAAAABJQEAAAABJgEAAAABJwEAIQAhKAEAAAABKQEAAAABKgEAAAABBhoAACIAMBsAAAQAEBwAACIAMB0BACMAIR4BACMAIR9AACQAIQsgAQAAAAEhAQAAAAQiAQAAAAQjAQAAAAEkAQAAAAElAQAAAAEmAQAAAAEnAQAhACEoAQAAAAEpAQAAAAEqAQAAAAEIIEAAAAABIUAAAAAEIkAAAAAEI0AAAAABJEAAAAABJUAAAAABJkAAAAABJ0AAHwAhAAAAASsBAAAAAQErQAAAAAEAAAAAAxUABhYABxcACAAAAAMVAAYWAAcXAAgBAgECAwEFBgEGBwEHCAEJCgEKDAILDQMMDwENEQIOEgQREwESFAETFQIYGAUZGQk"
+  strings: JSON.parse("[\"where\",\"orderBy\",\"cursor\",\"user\",\"refreshTokens\",\"_count\",\"User.findUnique\",\"User.findUniqueOrThrow\",\"User.findFirst\",\"User.findFirstOrThrow\",\"User.findMany\",\"data\",\"User.createOne\",\"User.createMany\",\"User.createManyAndReturn\",\"User.updateOne\",\"User.updateMany\",\"User.updateManyAndReturn\",\"create\",\"update\",\"User.upsertOne\",\"User.deleteOne\",\"User.deleteMany\",\"having\",\"_min\",\"_max\",\"User.groupBy\",\"User.aggregate\",\"RefreshToken.findUnique\",\"RefreshToken.findUniqueOrThrow\",\"RefreshToken.findFirst\",\"RefreshToken.findFirstOrThrow\",\"RefreshToken.findMany\",\"RefreshToken.createOne\",\"RefreshToken.createMany\",\"RefreshToken.createManyAndReturn\",\"RefreshToken.updateOne\",\"RefreshToken.updateMany\",\"RefreshToken.updateManyAndReturn\",\"RefreshToken.upsertOne\",\"RefreshToken.deleteOne\",\"RefreshToken.deleteMany\",\"RefreshToken.groupBy\",\"RefreshToken.aggregate\",\"AND\",\"OR\",\"NOT\",\"id\",\"tokenHash\",\"userId\",\"expiresAt\",\"revokedAt\",\"createdAt\",\"equals\",\"in\",\"notIn\",\"lt\",\"lte\",\"gt\",\"gte\",\"not\",\"contains\",\"startsWith\",\"endsWith\",\"email\",\"passwordHash\",\"Role\",\"role\",\"updatedAt\",\"every\",\"some\",\"none\",\"is\",\"isNot\",\"connectOrCreate\",\"upsert\",\"createMany\",\"set\",\"disconnect\",\"delete\",\"connect\",\"updateMany\",\"deleteMany\"]"),
+  graph: "bxIgCgQAAEkAICwAAEUAMC0AAAkAEC4AAEUAMC8BAAAAATRAAEgAIUABAAAAAUEBAEYAIUMAAEdDIkRAAEgAIQEAAAABACAKAwAATAAgLAAASgAwLQAAAwAQLgAASgAwLwEARgAhMAEARgAhMQEARgAhMkAASAAhM0AASwAhNEAASAAhAgMAAGkAIDMAAE0AIAoDAABMACAsAABKADAtAAADABAuAABKADAvAQAAAAEwAQAAAAExAQBGACEyQABIACEzQABLACE0QABIACEDAAAAAwAgAQAABAAwAgAABQAgAQAAAAMAIAEAAAABACAKBAAASQAgLAAARQAwLQAACQAQLgAARQAwLwEARgAhNEAASAAhQAEARgAhQQEARgAhQwAAR0MiREAASAAhAQQAAGgAIAMAAAAJACABAAAKADACAAABACADAAAACQAgAQAACgAwAgAAAQAgAwAAAAkAIAEAAAoAMAIAAAEAIAcEAABnACAvAQAAAAE0QAAAAAFAAQAAAAFBAQAAAAFDAAAAQwJEQAAAAAEBCwAADgAgBi8BAAAAATRAAAAAAUABAAAAAUEBAAAAAUMAAABDAkRAAAAAAQELAAAQADABCwAAEAAwBwQAAFoAIC8BAFEAITRAAFIAIUABAFEAIUEBAFEAIUMAAFlDIkRAAFIAIQIAAAABACALAAATACAGLwEAUQAhNEAAUgAhQAEAUQAhQQEAUQAhQwAAWUMiREAAUgAhAgAAAAkAIAsAABUAIAIAAAAJACALAAAVACADAAAAAQAgEgAADgAgEwAAEwAgAQAAAAEAIAEAAAAJACADBQAAVgAgGAAAWAAgGQAAVwAgCSwAAEEAMC0AABwAEC4AAEEAMC8BADYAITRAADcAIUABADYAIUEBADYAIUMAAEJDIkRAADcAIQMAAAAJACABAAAbADAXAAAcACADAAAACQAgAQAACgAwAgAAAQAgAQAAAAUAIAEAAAAFACADAAAAAwAgAQAABAAwAgAABQAgAwAAAAMAIAEAAAQAMAIAAAUAIAMAAAADACABAAAEADACAAAFACAHAwAAVQAgLwEAAAABMAEAAAABMQEAAAABMkAAAAABM0AAAAABNEAAAAABAQsAACQAIAYvAQAAAAEwAQAAAAExAQAAAAEyQAAAAAEzQAAAAAE0QAAAAAEBCwAAJgAwAQsAACYA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ATRAAAAAAQIAAAAFACASAABmACADAAAABQAgEgAAZgAgEwAAZQAgAQsAAGoAMAoDAABMACAsAABKADAtAAADABAuAABKADAvAQAAAAEwAQAAAAExAQBGACEyQABIACEzQABLACE0QABIACECAAAABQAgCwAAZQAgAgAAAGMAIAsAAGQAIAksAABiADAtAABjABAuAABiADAvAQBGACEwAQBGACExAQBGACEyQABIACEzQABLACE0QABIACEJLAAAYgAwLQAAYwAQLgAAYgAwLwEARgAhMAEARgAhMQEARgAhMkAASAAhM0AASwAhNEAASAAhBS8BAFEAITABAFEAITJAAFIAITNAAFMAITRAAFIAIQUvAQBRACEwAQBRACEyQABSACEzQABTACE0QABSACEFLwEAAAABMAEAAAABMkAAAAABM0AAAAABNEAAAAABBBIAAFsAMEoAAFwAMEwAAF4AIFAAAF8AMAABBAAAaAAgBS8BAAAAATABAAAAATJAAAAAATNAAAAAATRAAAAAAQYvAQAAAAE0QAAAAAFAAQAAAAFBAQAAAAFDAAAAQwJEQAAAAAECAAAAAQAgEgAAawAgAwAAAAkAIBIAAGsAIBMAAG8AIAgAAAAJACALAABvACAvAQBRACE0QABSACFAAQBRACFBAQBRACFDAABZQyJEQABSACEGLwEAUQAhNEAAUgAhQAEAUQAhQQEAUQAhQwAAWUMiREAAUgAhAgQGAgUAAwEDAAEBBAcAAAAAAwUACBgACRkACgAAAAMFAAgYAAkZAAoBAwABAQMAAQMFAA8YABAZABEAAAADBQAPGAAQGQARBgIBBwgBCAsBCQwBCg0BDA8BDREEDhIFDxQBEBYEERcGFBgBFRkBFhoEGh0HGx4LHB8CHSACHiECHyICICMCISUCIicEIygMJCoCJSwEJi0NJy4CKC8CKTAEKjMOKzQS"
 }
 
 async function decodeBase64AsWasm(wasmBase64: string): Promise<WebAssembly.Module> {
@@ -70,8 +70,8 @@ export interface PrismaClientConstructor {
    * const prisma = new PrismaClient({
    *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
    * })
-   * // Fetch zero or more HealthChecks
-   * const healthChecks = await prisma.healthCheck.findMany()
+   * // Fetch zero or more Users
+   * const users = await prisma.user.findMany()
    * ```
    * 
    * Read more in our [docs](https://pris.ly/d/client).
@@ -94,8 +94,8 @@ export interface PrismaClientConstructor {
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more HealthChecks
- * const healthChecks = await prisma.healthCheck.findMany()
+ * // Fetch zero or more Users
+ * const users = await prisma.user.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -189,14 +189,24 @@ export interface PrismaClient<
   }>>
 
       /**
-   * `prisma.healthCheck`: Exposes CRUD operations for the **HealthCheck** model.
+   * `prisma.user`: Exposes CRUD operations for the **User** model.
     * Example usage:
     * ```ts
-    * // Fetch zero or more HealthChecks
-    * const healthChecks = await prisma.healthCheck.findMany()
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
     * ```
     */
-  get healthCheck(): Prisma.HealthCheckDelegate<ExtArgs, { omit: OmitOpts }>;
+  get user(): Prisma.UserDelegate<ExtArgs, { omit: OmitOpts }>;
+
+  /**
+   * `prisma.refreshToken`: Exposes CRUD operations for the **RefreshToken** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more RefreshTokens
+    * const refreshTokens = await prisma.refreshToken.findMany()
+    * ```
+    */
+  get refreshToken(): Prisma.RefreshTokenDelegate<ExtArgs, { omit: OmitOpts }>;
 }
 
 export function getPrismaClientClass(): PrismaClientConstructor {
