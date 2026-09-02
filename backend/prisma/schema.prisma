@@ -27,6 +27,7 @@ model User {
   updatedAt    DateTime @updatedAt
 
   refreshTokens RefreshToken[]
+  profile       Profile?
 }
 
 // Refresh tokens are stored hashed (never the raw token) so a logout or
@@ -42,4 +43,66 @@ model RefreshToken {
   createdAt DateTime  @default(now())
 
   @@index([userId])
+}
+
+enum FitnessGoal {
+  MUSCLE_GAIN
+  FAT_LOSS
+  WEIGHT_MAINTENANCE
+  STRENGTH
+  ENDURANCE
+  GENERAL_FITNESS
+}
+
+enum ActivityLevel {
+  SEDENTARY
+  LIGHTLY_ACTIVE
+  MODERATELY_ACTIVE
+  VERY_ACTIVE
+  EXTREMELY_ACTIVE
+}
+
+enum DietaryPreference {
+  NONE
+  VEGETARIAN
+  VEGAN
+  PESCATARIAN
+  KETO
+  PALEO
+  GLUTEN_FREE
+  HALAL
+  KOSHER
+}
+
+enum WorkoutType {
+  STRENGTH_TRAINING
+  CARDIO
+  HIIT
+  YOGA
+  PILATES
+  CROSSFIT
+  CALISTHENICS
+  MIXED
+}
+
+// 1:1 with User. All fitness fields are nullable — profile setup is
+// progressive, and PUT /profiles/me does a true full-replace upsert (a
+// field omitted from the request clears to null), so partial-vs-complete
+// is entirely a frontend concern, not a backend one.
+model Profile {
+  id                   String             @id @default(cuid())
+  userId               String             @unique
+  user                 User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  age                  Int?
+  heightCm             Float?
+  weightKg             Float?
+  targetWeightKg       Float?
+  fitnessGoal          FitnessGoal?
+  activityLevel        ActivityLevel?
+  workoutFrequency     Int?
+  availableEquipment   String[]           @default([])
+  dietaryPreference    DietaryPreference?
+  preferredWorkoutType WorkoutType?
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
 }

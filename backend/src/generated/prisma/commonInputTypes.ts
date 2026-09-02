@@ -119,6 +119,128 @@ export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedDateTimeNullableFilter<$PrismaModel>
 }
 
+export type IntNullableFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.IntFieldRefInput<$PrismaModel> | null
+  in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  notIn?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  lt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedIntNullableFilter<$PrismaModel> | number | null
+}
+
+export type FloatNullableFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.FloatFieldRefInput<$PrismaModel> | null
+  in?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel> | null
+  notIn?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel> | null
+  lt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedFloatNullableFilter<$PrismaModel> | number | null
+}
+
+export type EnumFitnessGoalNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.FitnessGoal | Prisma.EnumFitnessGoalFieldRefInput<$PrismaModel> | null
+  in?: $Enums.FitnessGoal[] | Prisma.ListEnumFitnessGoalFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.FitnessGoal[] | Prisma.ListEnumFitnessGoalFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumFitnessGoalNullableFilter<$PrismaModel> | $Enums.FitnessGoal | null
+}
+
+export type EnumActivityLevelNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.ActivityLevel | Prisma.EnumActivityLevelFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ActivityLevel[] | Prisma.ListEnumActivityLevelFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ActivityLevel[] | Prisma.ListEnumActivityLevelFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumActivityLevelNullableFilter<$PrismaModel> | $Enums.ActivityLevel | null
+}
+
+export type EnumDietaryPreferenceNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.DietaryPreference | Prisma.EnumDietaryPreferenceFieldRefInput<$PrismaModel> | null
+  in?: $Enums.DietaryPreference[] | Prisma.ListEnumDietaryPreferenceFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.DietaryPreference[] | Prisma.ListEnumDietaryPreferenceFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumDietaryPreferenceNullableFilter<$PrismaModel> | $Enums.DietaryPreference | null
+}
+
+export type EnumWorkoutTypeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.WorkoutType | Prisma.EnumWorkoutTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.WorkoutType[] | Prisma.ListEnumWorkoutTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.WorkoutType[] | Prisma.ListEnumWorkoutTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumWorkoutTypeNullableFilter<$PrismaModel> | $Enums.WorkoutType | null
+}
+
+export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.IntFieldRefInput<$PrismaModel> | null
+  in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  notIn?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  lt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _avg?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+  _sum?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedIntNullableFilter<$PrismaModel>
+}
+
+export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.FloatFieldRefInput<$PrismaModel> | null
+  in?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel> | null
+  notIn?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel> | null
+  lt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _avg?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+  _sum?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+}
+
+export type EnumFitnessGoalNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.FitnessGoal | Prisma.EnumFitnessGoalFieldRefInput<$PrismaModel> | null
+  in?: $Enums.FitnessGoal[] | Prisma.ListEnumFitnessGoalFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.FitnessGoal[] | Prisma.ListEnumFitnessGoalFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumFitnessGoalNullableWithAggregatesFilter<$PrismaModel> | $Enums.FitnessGoal | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumFitnessGoalNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumFitnessGoalNullableFilter<$PrismaModel>
+}
+
+export type EnumActivityLevelNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ActivityLevel | Prisma.EnumActivityLevelFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ActivityLevel[] | Prisma.ListEnumActivityLevelFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ActivityLevel[] | Prisma.ListEnumActivityLevelFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumActivityLevelNullableWithAggregatesFilter<$PrismaModel> | $Enums.ActivityLevel | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumActivityLevelNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumActivityLevelNullableFilter<$PrismaModel>
+}
+
+export type EnumDietaryPreferenceNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DietaryPreference | Prisma.EnumDietaryPreferenceFieldRefInput<$PrismaModel> | null
+  in?: $Enums.DietaryPreference[] | Prisma.ListEnumDietaryPreferenceFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.DietaryPreference[] | Prisma.ListEnumDietaryPreferenceFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumDietaryPreferenceNullableWithAggregatesFilter<$PrismaModel> | $Enums.DietaryPreference | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDietaryPreferenceNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDietaryPreferenceNullableFilter<$PrismaModel>
+}
+
+export type EnumWorkoutTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.WorkoutType | Prisma.EnumWorkoutTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.WorkoutType[] | Prisma.ListEnumWorkoutTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.WorkoutType[] | Prisma.ListEnumWorkoutTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumWorkoutTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.WorkoutType | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumWorkoutTypeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumWorkoutTypeNullableFilter<$PrismaModel>
+}
+
 export type NestedStringFilter<$PrismaModel = never> = {
   equals?: string | Prisma.StringFieldRefInput<$PrismaModel>
   in?: string[] | Prisma.ListStringFieldRefInput<$PrismaModel>
@@ -237,6 +359,117 @@ export type NestedIntNullableFilter<$PrismaModel = never> = {
   gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
   gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
   not?: Prisma.NestedIntNullableFilter<$PrismaModel> | number | null
+}
+
+export type NestedFloatNullableFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.FloatFieldRefInput<$PrismaModel> | null
+  in?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel> | null
+  notIn?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel> | null
+  lt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedFloatNullableFilter<$PrismaModel> | number | null
+}
+
+export type NestedEnumFitnessGoalNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.FitnessGoal | Prisma.EnumFitnessGoalFieldRefInput<$PrismaModel> | null
+  in?: $Enums.FitnessGoal[] | Prisma.ListEnumFitnessGoalFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.FitnessGoal[] | Prisma.ListEnumFitnessGoalFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumFitnessGoalNullableFilter<$PrismaModel> | $Enums.FitnessGoal | null
+}
+
+export type NestedEnumActivityLevelNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.ActivityLevel | Prisma.EnumActivityLevelFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ActivityLevel[] | Prisma.ListEnumActivityLevelFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ActivityLevel[] | Prisma.ListEnumActivityLevelFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumActivityLevelNullableFilter<$PrismaModel> | $Enums.ActivityLevel | null
+}
+
+export type NestedEnumDietaryPreferenceNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.DietaryPreference | Prisma.EnumDietaryPreferenceFieldRefInput<$PrismaModel> | null
+  in?: $Enums.DietaryPreference[] | Prisma.ListEnumDietaryPreferenceFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.DietaryPreference[] | Prisma.ListEnumDietaryPreferenceFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumDietaryPreferenceNullableFilter<$PrismaModel> | $Enums.DietaryPreference | null
+}
+
+export type NestedEnumWorkoutTypeNullableFilter<$PrismaModel = never> = {
+  equals?: $Enums.WorkoutType | Prisma.EnumWorkoutTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.WorkoutType[] | Prisma.ListEnumWorkoutTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.WorkoutType[] | Prisma.ListEnumWorkoutTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumWorkoutTypeNullableFilter<$PrismaModel> | $Enums.WorkoutType | null
+}
+
+export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.IntFieldRefInput<$PrismaModel> | null
+  in?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  notIn?: number[] | Prisma.ListIntFieldRefInput<$PrismaModel> | null
+  lt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.IntFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _avg?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+  _sum?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedIntNullableFilter<$PrismaModel>
+}
+
+export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: number | Prisma.FloatFieldRefInput<$PrismaModel> | null
+  in?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel> | null
+  notIn?: number[] | Prisma.ListFloatFieldRefInput<$PrismaModel> | null
+  lt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  lte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  gt?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  gte?: number | Prisma.FloatFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _avg?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+  _sum?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedFloatNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumFitnessGoalNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.FitnessGoal | Prisma.EnumFitnessGoalFieldRefInput<$PrismaModel> | null
+  in?: $Enums.FitnessGoal[] | Prisma.ListEnumFitnessGoalFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.FitnessGoal[] | Prisma.ListEnumFitnessGoalFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumFitnessGoalNullableWithAggregatesFilter<$PrismaModel> | $Enums.FitnessGoal | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumFitnessGoalNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumFitnessGoalNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumActivityLevelNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ActivityLevel | Prisma.EnumActivityLevelFieldRefInput<$PrismaModel> | null
+  in?: $Enums.ActivityLevel[] | Prisma.ListEnumActivityLevelFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.ActivityLevel[] | Prisma.ListEnumActivityLevelFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumActivityLevelNullableWithAggregatesFilter<$PrismaModel> | $Enums.ActivityLevel | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumActivityLevelNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumActivityLevelNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumDietaryPreferenceNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.DietaryPreference | Prisma.EnumDietaryPreferenceFieldRefInput<$PrismaModel> | null
+  in?: $Enums.DietaryPreference[] | Prisma.ListEnumDietaryPreferenceFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.DietaryPreference[] | Prisma.ListEnumDietaryPreferenceFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumDietaryPreferenceNullableWithAggregatesFilter<$PrismaModel> | $Enums.DietaryPreference | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumDietaryPreferenceNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumDietaryPreferenceNullableFilter<$PrismaModel>
+}
+
+export type NestedEnumWorkoutTypeNullableWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.WorkoutType | Prisma.EnumWorkoutTypeFieldRefInput<$PrismaModel> | null
+  in?: $Enums.WorkoutType[] | Prisma.ListEnumWorkoutTypeFieldRefInput<$PrismaModel> | null
+  notIn?: $Enums.WorkoutType[] | Prisma.ListEnumWorkoutTypeFieldRefInput<$PrismaModel> | null
+  not?: Prisma.NestedEnumWorkoutTypeNullableWithAggregatesFilter<$PrismaModel> | $Enums.WorkoutType | null
+  _count?: Prisma.NestedIntNullableFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumWorkoutTypeNullableFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumWorkoutTypeNullableFilter<$PrismaModel>
 }
 
 

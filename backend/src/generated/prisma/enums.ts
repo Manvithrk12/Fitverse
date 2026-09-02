@@ -15,3 +15,55 @@ export const Role = {
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const FitnessGoal = {
+  MUSCLE_GAIN: 'MUSCLE_GAIN',
+  FAT_LOSS: 'FAT_LOSS',
+  WEIGHT_MAINTENANCE: 'WEIGHT_MAINTENANCE',
+  STRENGTH: 'STRENGTH',
+  ENDURANCE: 'ENDURANCE',
+  GENERAL_FITNESS: 'GENERAL_FITNESS'
+} as const
+
+export type FitnessGoal = (typeof FitnessGoal)[keyof typeof FitnessGoal]
+
+
+export const ActivityLevel = {
+  SEDENTARY: 'SEDENTARY',
+  LIGHTLY_ACTIVE: 'LIGHTLY_ACTIVE',
+  MODERATELY_ACTIVE: 'MODERATELY_ACTIVE',
+  VERY_ACTIVE: 'VERY_ACTIVE',
+  EXTREMELY_ACTIVE: 'EXTREMELY_ACTIVE'
+} as const
+
+export type ActivityLevel = (typeof ActivityLevel)[keyof typeof ActivityLevel]
+
+
+export const DietaryPreference = {
+  NONE: 'NONE',
+  VEGETARIAN: 'VEGETARIAN',
+  VEGAN: 'VEGAN',
+  PESCATARIAN: 'PESCATARIAN',
+  KETO: 'KETO',
+  PALEO: 'PALEO',
+  GLUTEN_FREE: 'GLUTEN_FREE',
+  HALAL: 'HALAL',
+  KOSHER: 'KOSHER'
+} as const
+
+export type DietaryPreference = (typeof DietaryPreference)[keyof typeof DietaryPreference]
+
+
+export const WorkoutType = {
+  STRENGTH_TRAINING: 'STRENGTH_TRAINING',
+  CARDIO: 'CARDIO',
+  HIIT: 'HIIT',
+  YOGA: 'YOGA',
+  PILATES: 'PILATES',
+  CROSSFIT: 'CROSSFIT',
+  CALISTHENICS: 'CALISTHENICS',
+  MIXED: 'MIXED'
+} as const
+
+export type WorkoutType = (typeof WorkoutType)[keyof typeof WorkoutType]

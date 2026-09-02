@@ -52,7 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
-  RefreshToken: 'RefreshToken'
+  RefreshToken: 'RefreshToken',
+  Profile: 'Profile'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -93,6 +94,26 @@ export const RefreshTokenScalarFieldEnum = {
 } as const
 
 export type RefreshTokenScalarFieldEnum = (typeof RefreshTokenScalarFieldEnum)[keyof typeof RefreshTokenScalarFieldEnum]
+
+
+export const ProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  age: 'age',
+  heightCm: 'heightCm',
+  weightKg: 'weightKg',
+  targetWeightKg: 'targetWeightKg',
+  fitnessGoal: 'fitnessGoal',
+  activityLevel: 'activityLevel',
+  workoutFrequency: 'workoutFrequency',
+  availableEquipment: 'availableEquipment',
+  dietaryPreference: 'dietaryPreference',
+  preferredWorkoutType: 'preferredWorkoutType',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
 
 
 export const SortOrder = {
