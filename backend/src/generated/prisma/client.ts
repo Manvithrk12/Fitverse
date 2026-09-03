@@ -59,3 +59,8 @@ export type Profile = Prisma.ProfileModel
  * 
  */
 export type Workout = Prisma.WorkoutModel
+/**
+ * Model NutritionEntry
+ * 
+ */
+export type NutritionEntry = Prisma.NutritionEntryModel

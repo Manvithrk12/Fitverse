@@ -26,9 +26,10 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  refreshTokens RefreshToken[]
-  profile       Profile?
-  workouts      Workout[]
+  refreshTokens    RefreshToken[]
+  profile          Profile?
+  workouts         Workout[]
+  nutritionEntries NutritionEntry[]
 }
 
 // Refresh tokens are stored hashed (never the raw token) so a logout or
@@ -137,4 +138,36 @@ model Workout {
 
   @@index([userId])
   @@index([userId, scheduledDate])
+}
+
+enum MealType {
+  BREAKFAST
+  LUNCH
+  DINNER
+  SNACK
+}
+
+// foodName/mealType/servingSize/calories/consumedAt are required; the three
+// macro fields are optional (nullable) — logging a food's calories without
+// full macro detail is a normal, lighter-weight use case, same philosophy
+// as Profile's optional fields in Step 1. Macros use Decimal (not Float) so
+// daily-total aggregation happens as exact DECIMAL arithmetic in Postgres
+// (via Prisma's aggregate/_sum), not floating-point summation in JS.
+model NutritionEntry {
+  id                 String    @id @default(cuid())
+  userId             String
+  user               User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  foodName           String
+  mealType           MealType
+  servingSize        String
+  calories           Int
+  proteinGrams       Decimal?
+  carbohydratesGrams Decimal?
+  fatGrams           Decimal?
+  consumedAt         DateTime
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([userId, consumedAt])
 }

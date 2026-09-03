@@ -193,6 +193,7 @@ export type UserWhereInput = {
   refreshTokens?: Prisma.RefreshTokenListRelationFilter
   profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
   workouts?: Prisma.WorkoutListRelationFilter
+  nutritionEntries?: Prisma.NutritionEntryListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -205,6 +206,7 @@ export type UserOrderByWithRelationInput = {
   refreshTokens?: Prisma.RefreshTokenOrderByRelationAggregateInput
   profile?: Prisma.ProfileOrderByWithRelationInput
   workouts?: Prisma.WorkoutOrderByRelationAggregateInput
+  nutritionEntries?: Prisma.NutritionEntryOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -220,6 +222,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   refreshTokens?: Prisma.RefreshTokenListRelationFilter
   profile?: Prisma.XOR<Prisma.ProfileNullableScalarRelationFilter, Prisma.ProfileWhereInput> | null
   workouts?: Prisma.WorkoutListRelationFilter
+  nutritionEntries?: Prisma.NutritionEntryListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -256,6 +259,7 @@ export type UserCreateInput = {
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   workouts?: Prisma.WorkoutCreateNestedManyWithoutUserInput
+  nutritionEntries?: Prisma.NutritionEntryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -268,6 +272,7 @@ export type UserUncheckedCreateInput = {
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   workouts?: Prisma.WorkoutUncheckedCreateNestedManyWithoutUserInput
+  nutritionEntries?: Prisma.NutritionEntryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -280,6 +285,7 @@ export type UserUpdateInput = {
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   workouts?: Prisma.WorkoutUpdateManyWithoutUserNestedInput
+  nutritionEntries?: Prisma.NutritionEntryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -292,6 +298,7 @@ export type UserUncheckedUpdateInput = {
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   workouts?: Prisma.WorkoutUncheckedUpdateManyWithoutUserNestedInput
+  nutritionEntries?: Prisma.NutritionEntryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -407,6 +414,20 @@ export type UserUpdateOneRequiredWithoutWorkoutsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutWorkoutsInput, Prisma.UserUpdateWithoutWorkoutsInput>, Prisma.UserUncheckedUpdateWithoutWorkoutsInput>
 }
 
+export type UserCreateNestedOneWithoutNutritionEntriesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNutritionEntriesInput, Prisma.UserUncheckedCreateWithoutNutritionEntriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNutritionEntriesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutNutritionEntriesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutNutritionEntriesInput, Prisma.UserUncheckedCreateWithoutNutritionEntriesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutNutritionEntriesInput
+  upsert?: Prisma.UserUpsertWithoutNutritionEntriesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNutritionEntriesInput, Prisma.UserUpdateWithoutNutritionEntriesInput>, Prisma.UserUncheckedUpdateWithoutNutritionEntriesInput>
+}
+
 export type UserCreateWithoutRefreshTokensInput = {
   id?: string
   email: string
@@ -416,6 +437,7 @@ export type UserCreateWithoutRefreshTokensInput = {
   updatedAt?: Date | string
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   workouts?: Prisma.WorkoutCreateNestedManyWithoutUserInput
+  nutritionEntries?: Prisma.NutritionEntryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRefreshTokensInput = {
@@ -427,6 +449,7 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   updatedAt?: Date | string
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   workouts?: Prisma.WorkoutUncheckedCreateNestedManyWithoutUserInput
+  nutritionEntries?: Prisma.NutritionEntryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRefreshTokensInput = {
@@ -454,6 +477,7 @@ export type UserUpdateWithoutRefreshTokensInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   workouts?: Prisma.WorkoutUpdateManyWithoutUserNestedInput
+  nutritionEntries?: Prisma.NutritionEntryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRefreshTokensInput = {
@@ -465,6 +489,7 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   workouts?: Prisma.WorkoutUncheckedUpdateManyWithoutUserNestedInput
+  nutritionEntries?: Prisma.NutritionEntryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProfileInput = {
@@ -476,6 +501,7 @@ export type UserCreateWithoutProfileInput = {
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
   workouts?: Prisma.WorkoutCreateNestedManyWithoutUserInput
+  nutritionEntries?: Prisma.NutritionEntryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProfileInput = {
@@ -487,6 +513,7 @@ export type UserUncheckedCreateWithoutProfileInput = {
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   workouts?: Prisma.WorkoutUncheckedCreateNestedManyWithoutUserInput
+  nutritionEntries?: Prisma.NutritionEntryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProfileInput = {
@@ -514,6 +541,7 @@ export type UserUpdateWithoutProfileInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
   workouts?: Prisma.WorkoutUpdateManyWithoutUserNestedInput
+  nutritionEntries?: Prisma.NutritionEntryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProfileInput = {
@@ -525,6 +553,7 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   workouts?: Prisma.WorkoutUncheckedUpdateManyWithoutUserNestedInput
+  nutritionEntries?: Prisma.NutritionEntryUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWorkoutsInput = {
@@ -536,6 +565,7 @@ export type UserCreateWithoutWorkoutsInput = {
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  nutritionEntries?: Prisma.NutritionEntryCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWorkoutsInput = {
@@ -547,6 +577,7 @@ export type UserUncheckedCreateWithoutWorkoutsInput = {
   updatedAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  nutritionEntries?: Prisma.NutritionEntryUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWorkoutsInput = {
@@ -574,6 +605,7 @@ export type UserUpdateWithoutWorkoutsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  nutritionEntries?: Prisma.NutritionEntryUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkoutsInput = {
@@ -585,6 +617,71 @@ export type UserUncheckedUpdateWithoutWorkoutsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  nutritionEntries?: Prisma.NutritionEntryUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutNutritionEntriesInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  workouts?: Prisma.WorkoutCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutNutritionEntriesInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  workouts?: Prisma.WorkoutUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutNutritionEntriesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutNutritionEntriesInput, Prisma.UserUncheckedCreateWithoutNutritionEntriesInput>
+}
+
+export type UserUpsertWithoutNutritionEntriesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutNutritionEntriesInput, Prisma.UserUncheckedUpdateWithoutNutritionEntriesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutNutritionEntriesInput, Prisma.UserUncheckedCreateWithoutNutritionEntriesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutNutritionEntriesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutNutritionEntriesInput, Prisma.UserUncheckedUpdateWithoutNutritionEntriesInput>
+}
+
+export type UserUpdateWithoutNutritionEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  workouts?: Prisma.WorkoutUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutNutritionEntriesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  workouts?: Prisma.WorkoutUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -595,11 +692,13 @@ export type UserUncheckedUpdateWithoutWorkoutsInput = {
 export type UserCountOutputType = {
   refreshTokens: number
   workouts: number
+  nutritionEntries: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   refreshTokens?: boolean | UserCountOutputTypeCountRefreshTokensArgs
   workouts?: boolean | UserCountOutputTypeCountWorkoutsArgs
+  nutritionEntries?: boolean | UserCountOutputTypeCountNutritionEntriesArgs
 }
 
 /**
@@ -626,6 +725,13 @@ export type UserCountOutputTypeCountWorkoutsArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.WorkoutWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountNutritionEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.NutritionEntryWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -637,6 +743,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   refreshTokens?: boolean | Prisma.User$refreshTokensArgs<ExtArgs>
   profile?: boolean | Prisma.User$profileArgs<ExtArgs>
   workouts?: boolean | Prisma.User$workoutsArgs<ExtArgs>
+  nutritionEntries?: boolean | Prisma.User$nutritionEntriesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -672,6 +779,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   refreshTokens?: boolean | Prisma.User$refreshTokensArgs<ExtArgs>
   profile?: boolean | Prisma.User$profileArgs<ExtArgs>
   workouts?: boolean | Prisma.User$workoutsArgs<ExtArgs>
+  nutritionEntries?: boolean | Prisma.User$nutritionEntriesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -683,6 +791,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     refreshTokens: Prisma.$RefreshTokenPayload<ExtArgs>[]
     profile: Prisma.$ProfilePayload<ExtArgs> | null
     workouts: Prisma.$WorkoutPayload<ExtArgs>[]
+    nutritionEntries: Prisma.$NutritionEntryPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1088,6 +1197,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   refreshTokens<T extends Prisma.User$refreshTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$refreshTokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   profile<T extends Prisma.User$profileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$profileArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   workouts<T extends Prisma.User$workoutsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$workoutsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkoutPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  nutritionEntries<T extends Prisma.User$nutritionEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$nutritionEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NutritionEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1580,6 +1690,30 @@ export type User$workoutsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.WorkoutScalarFieldEnum | Prisma.WorkoutScalarFieldEnum[]
+}
+
+/**
+ * User.nutritionEntries
+ */
+export type User$nutritionEntriesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the NutritionEntry
+   */
+  select?: Prisma.NutritionEntrySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the NutritionEntry
+   */
+  omit?: Prisma.NutritionEntryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NutritionEntryInclude<ExtArgs> | null
+  where?: Prisma.NutritionEntryWhereInput
+  orderBy?: Prisma.NutritionEntryOrderByWithRelationInput | Prisma.NutritionEntryOrderByWithRelationInput[]
+  cursor?: Prisma.NutritionEntryWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.NutritionEntryScalarFieldEnum | Prisma.NutritionEntryScalarFieldEnum[]
 }
 
 /**

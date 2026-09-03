@@ -75,3 +75,13 @@ export const WorkoutStatus = {
 } as const
 
 export type WorkoutStatus = (typeof WorkoutStatus)[keyof typeof WorkoutStatus]
+
+
+export const MealType = {
+  BREAKFAST: 'BREAKFAST',
+  LUNCH: 'LUNCH',
+  DINNER: 'DINNER',
+  SNACK: 'SNACK'
+} as const
+
+export type MealType = (typeof MealType)[keyof typeof MealType]
