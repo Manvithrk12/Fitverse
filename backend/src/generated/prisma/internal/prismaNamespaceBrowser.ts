@@ -53,7 +53,8 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   RefreshToken: 'RefreshToken',
-  Profile: 'Profile'
+  Profile: 'Profile',
+  Workout: 'Workout'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -114,6 +115,23 @@ export const ProfileScalarFieldEnum = {
 } as const
 
 export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
+
+
+export const WorkoutScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  workoutType: 'workoutType',
+  description: 'description',
+  scheduledDate: 'scheduledDate',
+  durationMinutes: 'durationMinutes',
+  status: 'status',
+  completedAt: 'completedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WorkoutScalarFieldEnum = (typeof WorkoutScalarFieldEnum)[keyof typeof WorkoutScalarFieldEnum]
 
 
 export const SortOrder = {

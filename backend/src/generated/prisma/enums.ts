@@ -67,3 +67,11 @@ export const WorkoutType = {
 } as const
 
 export type WorkoutType = (typeof WorkoutType)[keyof typeof WorkoutType]
+
+
+export const WorkoutStatus = {
+  PLANNED: 'PLANNED',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type WorkoutStatus = (typeof WorkoutStatus)[keyof typeof WorkoutStatus]

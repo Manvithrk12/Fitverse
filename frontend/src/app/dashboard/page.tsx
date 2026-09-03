@@ -18,6 +18,9 @@ function DashboardContent() {
         <Link href="/profile" className="rounded border border-gray-300 px-4 py-2 text-sm">
           Edit fitness profile
         </Link>
+        <Link href="/workouts" className="rounded border border-gray-300 px-4 py-2 text-sm">
+          My workouts
+        </Link>
         <button
           onClick={() => logout()}
           className="rounded bg-black px-4 py-2 text-sm font-medium text-white"

@@ -28,6 +28,7 @@ model User {
 
   refreshTokens RefreshToken[]
   profile       Profile?
+  workouts      Workout[]
 }
 
 // Refresh tokens are stored hashed (never the raw token) so a logout or
@@ -105,4 +106,35 @@ model Profile {
   preferredWorkoutType WorkoutType?
   createdAt            DateTime           @default(now())
   updatedAt            DateTime           @updatedAt
+}
+
+enum WorkoutStatus {
+  PLANNED
+  COMPLETED
+}
+
+// Reuses WorkoutType from the Fitness Profile taxonomy (Step 1) rather than
+// defining a second one, per the requirement to align the two. workoutType
+// is nullable — a workout doesn't strictly need a category to be useful.
+// status only ever moves PLANNED -> COMPLETED via PATCH /:id/complete;
+// title/description/scheduledDate/durationMinutes/workoutType are edited
+// via PUT — keeping "mark complete" as the single path that can set
+// COMPLETED avoids two different endpoints being able to race on the same
+// transition.
+model Workout {
+  id              String        @id @default(cuid())
+  userId          String
+  user            User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title           String
+  workoutType     WorkoutType?
+  description     String?
+  scheduledDate   DateTime?
+  durationMinutes Int?
+  status          WorkoutStatus @default(PLANNED)
+  completedAt     DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  @@index([userId])
+  @@index([userId, scheduledDate])
 }

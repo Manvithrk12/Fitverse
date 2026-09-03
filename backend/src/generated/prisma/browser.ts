@@ -32,3 +32,8 @@ export type RefreshToken = Prisma.RefreshTokenModel
  * 
  */
 export type Profile = Prisma.ProfileModel
+/**
+ * Model Workout
+ * 
+ */
+export type Workout = Prisma.WorkoutModel
