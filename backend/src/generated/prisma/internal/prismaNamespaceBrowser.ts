@@ -55,7 +55,9 @@ export const ModelName = {
   RefreshToken: 'RefreshToken',
   Profile: 'Profile',
   Workout: 'Workout',
-  NutritionEntry: 'NutritionEntry'
+  NutritionEntry: 'NutritionEntry',
+  Progress: 'Progress',
+  ProgressPhoto: 'ProgressPhoto'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -151,6 +153,34 @@ export const NutritionEntryScalarFieldEnum = {
 } as const
 
 export type NutritionEntryScalarFieldEnum = (typeof NutritionEntryScalarFieldEnum)[keyof typeof NutritionEntryScalarFieldEnum]
+
+
+export const ProgressScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  recordedAt: 'recordedAt',
+  weight: 'weight',
+  chest: 'chest',
+  waist: 'waist',
+  hips: 'hips',
+  arms: 'arms',
+  thighs: 'thighs',
+  bodyFatPercent: 'bodyFatPercent',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProgressScalarFieldEnum = (typeof ProgressScalarFieldEnum)[keyof typeof ProgressScalarFieldEnum]
+
+
+export const ProgressPhotoScalarFieldEnum = {
+  id: 'id',
+  progressId: 'progressId',
+  url: 'url',
+  createdAt: 'createdAt'
+} as const
+
+export type ProgressPhotoScalarFieldEnum = (typeof ProgressPhotoScalarFieldEnum)[keyof typeof ProgressPhotoScalarFieldEnum]
 
 
 export const SortOrder = {

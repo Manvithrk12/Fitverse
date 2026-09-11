@@ -30,6 +30,7 @@ model User {
   profile          Profile?
   workouts         Workout[]
   nutritionEntries NutritionEntry[]
+  progressEntries  Progress[]
 }
 
 // Refresh tokens are stored hashed (never the raw token) so a logout or
@@ -170,4 +171,46 @@ model NutritionEntry {
 
   @@index([userId])
   @@index([userId, consumedAt])
+}
+
+// weight is required (it's the entry's primary purpose); measurements and
+// bodyFatPercent are all nullable — same "optional detail, required core"
+// philosophy as Profile (Step 1) and Nutrition (Step 3). Decimal is used
+// throughout for the same reason as Nutrition's macros: exact numeric
+// storage, no floating-point drift.
+model Progress {
+  id              String   @id @default(cuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  recordedAt      DateTime
+  weight          Decimal
+  chest           Decimal?
+  waist           Decimal?
+  hips            Decimal?
+  arms            Decimal?
+  thighs          Decimal?
+  bodyFatPercent  Decimal?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  photos ProgressPhoto[]
+
+  @@index([userId])
+  @@index([userId, recordedAt])
+}
+
+// No userId here — ownership is derived transitively through
+// progress.userId. Every read/write is scoped by a `progress: { userId }`
+// relation filter in the query itself, not a separate check-then-act step.
+// Stores a URL/path only, never binary image data — the MVP representation
+// the blueprint specifies, ready to point at S3 once that's built (later
+// phase, explicitly out of scope here).
+model ProgressPhoto {
+  id         String   @id @default(cuid())
+  progressId String
+  progress   Progress @relation(fields: [progressId], references: [id], onDelete: Cascade)
+  url        String
+  createdAt  DateTime @default(now())
+
+  @@index([progressId])
 }

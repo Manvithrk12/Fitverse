@@ -401,7 +401,9 @@ export const ModelName = {
   RefreshToken: 'RefreshToken',
   Profile: 'Profile',
   Workout: 'Workout',
-  NutritionEntry: 'NutritionEntry'
+  NutritionEntry: 'NutritionEntry',
+  Progress: 'Progress',
+  ProgressPhoto: 'ProgressPhoto'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -417,7 +419,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "refreshToken" | "profile" | "workout" | "nutritionEntry"
+    modelProps: "user" | "refreshToken" | "profile" | "workout" | "nutritionEntry" | "progress" | "progressPhoto"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -791,6 +793,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Progress: {
+      payload: Prisma.$ProgressPayload<ExtArgs>
+      fields: Prisma.ProgressFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ProgressFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ProgressFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPayload>
+        }
+        findFirst: {
+          args: Prisma.ProgressFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ProgressFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPayload>
+        }
+        findMany: {
+          args: Prisma.ProgressFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPayload>[]
+        }
+        create: {
+          args: Prisma.ProgressCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPayload>
+        }
+        createMany: {
+          args: Prisma.ProgressCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ProgressCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPayload>[]
+        }
+        delete: {
+          args: Prisma.ProgressDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPayload>
+        }
+        update: {
+          args: Prisma.ProgressUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPayload>
+        }
+        deleteMany: {
+          args: Prisma.ProgressDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ProgressUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ProgressUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPayload>[]
+        }
+        upsert: {
+          args: Prisma.ProgressUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPayload>
+        }
+        aggregate: {
+          args: Prisma.ProgressAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProgress>
+        }
+        groupBy: {
+          args: Prisma.ProgressGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProgressGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ProgressCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProgressCountAggregateOutputType> | number
+        }
+      }
+    }
+    ProgressPhoto: {
+      payload: Prisma.$ProgressPhotoPayload<ExtArgs>
+      fields: Prisma.ProgressPhotoFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ProgressPhotoFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPhotoPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ProgressPhotoFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>
+        }
+        findFirst: {
+          args: Prisma.ProgressPhotoFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPhotoPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ProgressPhotoFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>
+        }
+        findMany: {
+          args: Prisma.ProgressPhotoFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>[]
+        }
+        create: {
+          args: Prisma.ProgressPhotoCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>
+        }
+        createMany: {
+          args: Prisma.ProgressPhotoCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.ProgressPhotoCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>[]
+        }
+        delete: {
+          args: Prisma.ProgressPhotoDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>
+        }
+        update: {
+          args: Prisma.ProgressPhotoUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>
+        }
+        deleteMany: {
+          args: Prisma.ProgressPhotoDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ProgressPhotoUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.ProgressPhotoUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>[]
+        }
+        upsert: {
+          args: Prisma.ProgressPhotoUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ProgressPhotoPayload>
+        }
+        aggregate: {
+          args: Prisma.ProgressPhotoAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateProgressPhoto>
+        }
+        groupBy: {
+          args: Prisma.ProgressPhotoGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProgressPhotoGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ProgressPhotoCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ProgressPhotoCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -907,6 +1057,34 @@ export const NutritionEntryScalarFieldEnum = {
 } as const
 
 export type NutritionEntryScalarFieldEnum = (typeof NutritionEntryScalarFieldEnum)[keyof typeof NutritionEntryScalarFieldEnum]
+
+
+export const ProgressScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  recordedAt: 'recordedAt',
+  weight: 'weight',
+  chest: 'chest',
+  waist: 'waist',
+  hips: 'hips',
+  arms: 'arms',
+  thighs: 'thighs',
+  bodyFatPercent: 'bodyFatPercent',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProgressScalarFieldEnum = (typeof ProgressScalarFieldEnum)[keyof typeof ProgressScalarFieldEnum]
+
+
+export const ProgressPhotoScalarFieldEnum = {
+  id: 'id',
+  progressId: 'progressId',
+  url: 'url',
+  createdAt: 'createdAt'
+} as const
+
+export type ProgressPhotoScalarFieldEnum = (typeof ProgressPhotoScalarFieldEnum)[keyof typeof ProgressPhotoScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1262,6 +1440,8 @@ export type GlobalOmitConfig = {
   profile?: Prisma.ProfileOmit
   workout?: Prisma.WorkoutOmit
   nutritionEntry?: Prisma.NutritionEntryOmit
+  progress?: Prisma.ProgressOmit
+  progressPhoto?: Prisma.ProgressPhotoOmit
 }
 
 /* Types for Logging */

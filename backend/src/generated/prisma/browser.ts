@@ -42,3 +42,13 @@ export type Workout = Prisma.WorkoutModel
  * 
  */
 export type NutritionEntry = Prisma.NutritionEntryModel
+/**
+ * Model Progress
+ * 
+ */
+export type Progress = Prisma.ProgressModel
+/**
+ * Model ProgressPhoto
+ * 
+ */
+export type ProgressPhoto = Prisma.ProgressPhotoModel
