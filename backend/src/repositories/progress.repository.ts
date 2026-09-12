@@ -14,6 +14,15 @@ function toWriteData(input: ProgressEntryInput) {
   };
 }
 
+// recordedAt is a date the user picks (often just a calendar day, sent as
+// midnight UTC by the frontend's date-only picker), so multiple entries
+// logged on the same day legitimately tie on recordedAt. createdAt is the
+// deterministic secondary key that breaks that tie — it's set once at
+// insert time and never touched by updates, so it reliably reflects
+// creation order regardless of how many same-day entries exist, and
+// editing an older entry's weight later can never make it appear "newest".
+// (Explicitly not updatedAt: that would do the opposite of what "newest"
+// should mean here.)
 export function listProgressForUser(userId: string) {
   return prisma.progress.findMany({
     where: { userId },
