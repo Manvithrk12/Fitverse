@@ -26,11 +26,13 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  refreshTokens    RefreshToken[]
-  profile          Profile?
-  workouts         Workout[]
-  nutritionEntries NutritionEntry[]
-  progressEntries  Progress[]
+  refreshTokens       RefreshToken[]
+  profile             Profile?
+  workouts            Workout[]
+  nutritionEntries    NutritionEntry[]
+  progressEntries     Progress[]
+  gamificationProfile GamificationProfile?
+  xpTransactions      XpTransaction[]
 }
 
 // Refresh tokens are stored hashed (never the raw token) so a logout or
@@ -213,4 +215,45 @@ model ProgressPhoto {
   createdAt  DateTime @default(now())
 
   @@index([progressId])
+}
+
+enum XpEventType {
+  WORKOUT_COMPLETED
+  PROTEIN_GOAL_ACHIEVED
+  WATER_GOAL_ACHIEVED
+  CHALLENGE_COMPLETED
+  PERSONAL_RECORD
+}
+
+// Current XP/level snapshot — one row per user, updated atomically
+// alongside each XpTransaction insert (same DB transaction) so the two can
+// never drift out of sync with each other.
+model GamificationProfile {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  totalXp   Int      @default(0)
+  level     Int      @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Append-only ledger of every XP award. The (userId, eventType, referenceId)
+// unique constraint is the idempotency guard: awarding the same event twice
+// for the same reference (e.g. the same workoutId) is a no-op rather than
+// double-counting XP. referenceId is nullable for event types with no
+// natural reference to dedupe against — Postgres treats every NULL as
+// distinct, so the constraint simply doesn't apply to those rows.
+model XpTransaction {
+  id          String      @id @default(cuid())
+  userId      String
+  user        User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount      Int
+  eventType   XpEventType
+  referenceId String?
+  createdAt   DateTime    @default(now())
+
+  @@unique([userId, eventType, referenceId])
+  @@index([userId])
+  @@index([userId, createdAt])
 }

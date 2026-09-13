@@ -85,3 +85,14 @@ export const MealType = {
 } as const
 
 export type MealType = (typeof MealType)[keyof typeof MealType]
+
+
+export const XpEventType = {
+  WORKOUT_COMPLETED: 'WORKOUT_COMPLETED',
+  PROTEIN_GOAL_ACHIEVED: 'PROTEIN_GOAL_ACHIEVED',
+  WATER_GOAL_ACHIEVED: 'WATER_GOAL_ACHIEVED',
+  CHALLENGE_COMPLETED: 'CHALLENGE_COMPLETED',
+  PERSONAL_RECORD: 'PERSONAL_RECORD'
+} as const
+
+export type XpEventType = (typeof XpEventType)[keyof typeof XpEventType]

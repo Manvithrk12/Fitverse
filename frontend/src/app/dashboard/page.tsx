@@ -9,6 +9,7 @@ import { FITNESS_GOAL_OPTIONS, Profile } from "@/lib/profile-types";
 import { Workout } from "@/lib/workout-types";
 import { NutritionForDate } from "@/lib/nutrition-types";
 import { ProgressEntry } from "@/lib/progress-types";
+import { GamificationState } from "@/lib/gamification-types";
 
 type SectionStatus = "loading" | "ready" | "error";
 
@@ -60,6 +61,10 @@ function DashboardContent() {
   const [progressStatus, setProgressStatus] = useState<SectionStatus>("loading");
   const [progressError, setProgressError] = useState<string | null>(null);
 
+  const [gamification, setGamification] = useState<GamificationState | null>(null);
+  const [gamificationStatus, setGamificationStatus] = useState<SectionStatus>("loading");
+  const [gamificationError, setGamificationError] = useState<string | null>(null);
+
   useEffect(() => {
     if (!accessToken) return;
     const today = todayUtcDateString();
@@ -108,6 +113,16 @@ function DashboardContent() {
         setProgressError(err instanceof ApiError ? err.message : "Couldn't load your progress.");
         setProgressStatus("error");
       });
+
+    apiFetch<GamificationState>("/gamification/me", { accessToken })
+      .then((data) => {
+        setGamification(data);
+        setGamificationStatus("ready");
+      })
+      .catch((err) => {
+        setGamificationError(err instanceof ApiError ? err.message : "Couldn't load your level and XP.");
+        setGamificationStatus("error");
+      });
   }, [accessToken]);
 
   const today = todayUtcDateString();
@@ -150,7 +165,7 @@ function DashboardContent() {
           </Link>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {/* Profile summary */}
           <section className="rounded border border-gray-200 p-4">
             <h2 className="font-semibold">Fitness Profile</h2>
@@ -253,6 +268,38 @@ function DashboardContent() {
                     {weightDelta === 0
                       ? "No change since last entry"
                       : `${weightDelta > 0 ? "+" : ""}${weightDelta.toFixed(1)}kg since last entry`}
+                  </p>
+                )}
+              </div>
+            )}
+          </section>
+
+          {/* Level & XP */}
+          <section className="rounded border border-gray-200 p-4">
+            <h2 className="font-semibold">Level & XP</h2>
+            {gamificationStatus === "loading" && <p className="mt-2 text-sm text-gray-500">Loading…</p>}
+            {gamificationStatus === "error" && <p className="mt-2 text-sm text-red-600">{gamificationError}</p>}
+            {gamificationStatus === "ready" && gamification && (
+              <div className="mt-2 text-sm text-gray-600">
+                <p className="font-medium text-gray-800">Level {gamification.level}</p>
+                <p>{gamification.totalXp} XP total</p>
+                <div className="mt-2 h-2 w-full overflow-hidden rounded bg-gray-100">
+                  <div
+                    className="h-full bg-black"
+                    style={{ width: `${Math.min(100, Math.max(0, gamification.xpProgress * 100))}%` }}
+                  />
+                </div>
+                <p className="mt-1 text-xs text-gray-400">
+                  {gamification.totalXp} / {gamification.xpForNextLevel} XP to level {gamification.level + 1}
+                </p>
+                {gamification.recentTransactions.length === 0 ? (
+                  <p className="mt-3 text-sm text-gray-500">
+                    No XP earned yet — complete a workout to get started.
+                  </p>
+                ) : (
+                  <p className="mt-3 text-xs text-gray-400">
+                    Last earned: +{gamification.recentTransactions[0].amount} XP (
+                    {gamification.recentTransactions[0].eventType.replaceAll("_", " ").toLowerCase()})
                   </p>
                 )}
               </div>

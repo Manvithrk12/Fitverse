@@ -1,10 +1,8 @@
 import { Request, Response } from "express";
 import * as workoutService from "../services/workout.service";
+import * as gamificationService from "../services/gamification.service";
 import { sendSuccess } from "../utils/apiResponse";
 
-// Express 5 types route params as `string | string[]` to account for
-// patterns that can repeat a segment; for a plain `:id` segment it is
-// always a single string at runtime. This narrows without an `any`.
 function paramId(req: Request): string {
   const { id } = req.params;
   return Array.isArray(id) ? id[0] : id;
@@ -37,5 +35,16 @@ export async function deleteWorkout(req: Request, res: Response): Promise<void> 
 
 export async function completeWorkout(req: Request, res: Response): Promise<void> {
   const workout = await workoutService.completeMyWorkout(req.user!.id, paramId(req));
-  sendSuccess(res, workout);
+  // Idempotent regardless of whether this call caused a fresh PLANNED ->
+  // COMPLETED transition or hit the already-completed no-op path in
+  // workout.repository.ts — awardXp's own (userId, eventType, workoutId)
+  // uniqueness guarantees XP is only ever granted once per workout, so no
+  // change to workout.service.ts/repository.ts was needed to detect that.
+  //
+  // Note: this is a separate DB transaction from the workout update above,
+  // not one combined transaction spanning both — if awarding XP fails here,
+  // the workout has already been marked completed. Acceptable trade-off to
+  // avoid coupling the Workout and Gamification repositories together.
+  const xp = await gamificationService.awardWorkoutCompletedXp(req.user!.id, workout.id);
+  sendSuccess(res, { ...workout, xpAwarded: xp.xpAwarded });
 }

@@ -74,3 +74,13 @@ export type Progress = Prisma.ProgressModel
  * 
  */
 export type ProgressPhoto = Prisma.ProgressPhotoModel
+/**
+ * Model GamificationProfile
+ * 
+ */
+export type GamificationProfile = Prisma.GamificationProfileModel
+/**
+ * Model XpTransaction
+ * 
+ */
+export type XpTransaction = Prisma.XpTransactionModel

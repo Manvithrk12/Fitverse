@@ -403,7 +403,9 @@ export const ModelName = {
   Workout: 'Workout',
   NutritionEntry: 'NutritionEntry',
   Progress: 'Progress',
-  ProgressPhoto: 'ProgressPhoto'
+  ProgressPhoto: 'ProgressPhoto',
+  GamificationProfile: 'GamificationProfile',
+  XpTransaction: 'XpTransaction'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -419,7 +421,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "refreshToken" | "profile" | "workout" | "nutritionEntry" | "progress" | "progressPhoto"
+    modelProps: "user" | "refreshToken" | "profile" | "workout" | "nutritionEntry" | "progress" | "progressPhoto" | "gamificationProfile" | "xpTransaction"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -941,6 +943,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    GamificationProfile: {
+      payload: Prisma.$GamificationProfilePayload<ExtArgs>
+      fields: Prisma.GamificationProfileFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.GamificationProfileFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamificationProfilePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.GamificationProfileFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamificationProfilePayload>
+        }
+        findFirst: {
+          args: Prisma.GamificationProfileFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamificationProfilePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.GamificationProfileFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamificationProfilePayload>
+        }
+        findMany: {
+          args: Prisma.GamificationProfileFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamificationProfilePayload>[]
+        }
+        create: {
+          args: Prisma.GamificationProfileCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamificationProfilePayload>
+        }
+        createMany: {
+          args: Prisma.GamificationProfileCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.GamificationProfileCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamificationProfilePayload>[]
+        }
+        delete: {
+          args: Prisma.GamificationProfileDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamificationProfilePayload>
+        }
+        update: {
+          args: Prisma.GamificationProfileUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamificationProfilePayload>
+        }
+        deleteMany: {
+          args: Prisma.GamificationProfileDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.GamificationProfileUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.GamificationProfileUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamificationProfilePayload>[]
+        }
+        upsert: {
+          args: Prisma.GamificationProfileUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$GamificationProfilePayload>
+        }
+        aggregate: {
+          args: Prisma.GamificationProfileAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateGamificationProfile>
+        }
+        groupBy: {
+          args: Prisma.GamificationProfileGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GamificationProfileGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.GamificationProfileCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.GamificationProfileCountAggregateOutputType> | number
+        }
+      }
+    }
+    XpTransaction: {
+      payload: Prisma.$XpTransactionPayload<ExtArgs>
+      fields: Prisma.XpTransactionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.XpTransactionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XpTransactionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.XpTransactionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XpTransactionPayload>
+        }
+        findFirst: {
+          args: Prisma.XpTransactionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XpTransactionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.XpTransactionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XpTransactionPayload>
+        }
+        findMany: {
+          args: Prisma.XpTransactionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XpTransactionPayload>[]
+        }
+        create: {
+          args: Prisma.XpTransactionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XpTransactionPayload>
+        }
+        createMany: {
+          args: Prisma.XpTransactionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.XpTransactionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XpTransactionPayload>[]
+        }
+        delete: {
+          args: Prisma.XpTransactionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XpTransactionPayload>
+        }
+        update: {
+          args: Prisma.XpTransactionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XpTransactionPayload>
+        }
+        deleteMany: {
+          args: Prisma.XpTransactionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.XpTransactionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.XpTransactionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XpTransactionPayload>[]
+        }
+        upsert: {
+          args: Prisma.XpTransactionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$XpTransactionPayload>
+        }
+        aggregate: {
+          args: Prisma.XpTransactionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateXpTransaction>
+        }
+        groupBy: {
+          args: Prisma.XpTransactionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.XpTransactionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.XpTransactionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.XpTransactionCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1085,6 +1235,30 @@ export const ProgressPhotoScalarFieldEnum = {
 } as const
 
 export type ProgressPhotoScalarFieldEnum = (typeof ProgressPhotoScalarFieldEnum)[keyof typeof ProgressPhotoScalarFieldEnum]
+
+
+export const GamificationProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  totalXp: 'totalXp',
+  level: 'level',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GamificationProfileScalarFieldEnum = (typeof GamificationProfileScalarFieldEnum)[keyof typeof GamificationProfileScalarFieldEnum]
+
+
+export const XpTransactionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  amount: 'amount',
+  eventType: 'eventType',
+  referenceId: 'referenceId',
+  createdAt: 'createdAt'
+} as const
+
+export type XpTransactionScalarFieldEnum = (typeof XpTransactionScalarFieldEnum)[keyof typeof XpTransactionScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1284,6 +1458,20 @@ export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
     
 
+
+/**
+ * Reference to a field of type 'XpEventType'
+ */
+export type EnumXpEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'XpEventType'>
+    
+
+
+/**
+ * Reference to a field of type 'XpEventType[]'
+ */
+export type ListEnumXpEventTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'XpEventType[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -1442,6 +1630,8 @@ export type GlobalOmitConfig = {
   nutritionEntry?: Prisma.NutritionEntryOmit
   progress?: Prisma.ProgressOmit
   progressPhoto?: Prisma.ProgressPhotoOmit
+  gamificationProfile?: Prisma.GamificationProfileOmit
+  xpTransaction?: Prisma.XpTransactionOmit
 }
 
 /* Types for Logging */

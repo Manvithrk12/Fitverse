@@ -195,6 +195,8 @@ export type UserWhereInput = {
   workouts?: Prisma.WorkoutListRelationFilter
   nutritionEntries?: Prisma.NutritionEntryListRelationFilter
   progressEntries?: Prisma.ProgressListRelationFilter
+  gamificationProfile?: Prisma.XOR<Prisma.GamificationProfileNullableScalarRelationFilter, Prisma.GamificationProfileWhereInput> | null
+  xpTransactions?: Prisma.XpTransactionListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -209,6 +211,8 @@ export type UserOrderByWithRelationInput = {
   workouts?: Prisma.WorkoutOrderByRelationAggregateInput
   nutritionEntries?: Prisma.NutritionEntryOrderByRelationAggregateInput
   progressEntries?: Prisma.ProgressOrderByRelationAggregateInput
+  gamificationProfile?: Prisma.GamificationProfileOrderByWithRelationInput
+  xpTransactions?: Prisma.XpTransactionOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -226,6 +230,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   workouts?: Prisma.WorkoutListRelationFilter
   nutritionEntries?: Prisma.NutritionEntryListRelationFilter
   progressEntries?: Prisma.ProgressListRelationFilter
+  gamificationProfile?: Prisma.XOR<Prisma.GamificationProfileNullableScalarRelationFilter, Prisma.GamificationProfileWhereInput> | null
+  xpTransactions?: Prisma.XpTransactionListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -264,6 +270,8 @@ export type UserCreateInput = {
   workouts?: Prisma.WorkoutCreateNestedManyWithoutUserInput
   nutritionEntries?: Prisma.NutritionEntryCreateNestedManyWithoutUserInput
   progressEntries?: Prisma.ProgressCreateNestedManyWithoutUserInput
+  gamificationProfile?: Prisma.GamificationProfileCreateNestedOneWithoutUserInput
+  xpTransactions?: Prisma.XpTransactionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -278,6 +286,8 @@ export type UserUncheckedCreateInput = {
   workouts?: Prisma.WorkoutUncheckedCreateNestedManyWithoutUserInput
   nutritionEntries?: Prisma.NutritionEntryUncheckedCreateNestedManyWithoutUserInput
   progressEntries?: Prisma.ProgressUncheckedCreateNestedManyWithoutUserInput
+  gamificationProfile?: Prisma.GamificationProfileUncheckedCreateNestedOneWithoutUserInput
+  xpTransactions?: Prisma.XpTransactionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -292,6 +302,8 @@ export type UserUpdateInput = {
   workouts?: Prisma.WorkoutUpdateManyWithoutUserNestedInput
   nutritionEntries?: Prisma.NutritionEntryUpdateManyWithoutUserNestedInput
   progressEntries?: Prisma.ProgressUpdateManyWithoutUserNestedInput
+  gamificationProfile?: Prisma.GamificationProfileUpdateOneWithoutUserNestedInput
+  xpTransactions?: Prisma.XpTransactionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -306,6 +318,8 @@ export type UserUncheckedUpdateInput = {
   workouts?: Prisma.WorkoutUncheckedUpdateManyWithoutUserNestedInput
   nutritionEntries?: Prisma.NutritionEntryUncheckedUpdateManyWithoutUserNestedInput
   progressEntries?: Prisma.ProgressUncheckedUpdateManyWithoutUserNestedInput
+  gamificationProfile?: Prisma.GamificationProfileUncheckedUpdateOneWithoutUserNestedInput
+  xpTransactions?: Prisma.XpTransactionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -449,6 +463,34 @@ export type UserUpdateOneRequiredWithoutProgressEntriesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProgressEntriesInput, Prisma.UserUpdateWithoutProgressEntriesInput>, Prisma.UserUncheckedUpdateWithoutProgressEntriesInput>
 }
 
+export type UserCreateNestedOneWithoutGamificationProfileInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutGamificationProfileInput, Prisma.UserUncheckedCreateWithoutGamificationProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGamificationProfileInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutGamificationProfileNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutGamificationProfileInput, Prisma.UserUncheckedCreateWithoutGamificationProfileInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutGamificationProfileInput
+  upsert?: Prisma.UserUpsertWithoutGamificationProfileInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutGamificationProfileInput, Prisma.UserUpdateWithoutGamificationProfileInput>, Prisma.UserUncheckedUpdateWithoutGamificationProfileInput>
+}
+
+export type UserCreateNestedOneWithoutXpTransactionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutXpTransactionsInput, Prisma.UserUncheckedCreateWithoutXpTransactionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutXpTransactionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutXpTransactionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutXpTransactionsInput, Prisma.UserUncheckedCreateWithoutXpTransactionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutXpTransactionsInput
+  upsert?: Prisma.UserUpsertWithoutXpTransactionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutXpTransactionsInput, Prisma.UserUpdateWithoutXpTransactionsInput>, Prisma.UserUncheckedUpdateWithoutXpTransactionsInput>
+}
+
 export type UserCreateWithoutRefreshTokensInput = {
   id?: string
   email: string
@@ -460,6 +502,8 @@ export type UserCreateWithoutRefreshTokensInput = {
   workouts?: Prisma.WorkoutCreateNestedManyWithoutUserInput
   nutritionEntries?: Prisma.NutritionEntryCreateNestedManyWithoutUserInput
   progressEntries?: Prisma.ProgressCreateNestedManyWithoutUserInput
+  gamificationProfile?: Prisma.GamificationProfileCreateNestedOneWithoutUserInput
+  xpTransactions?: Prisma.XpTransactionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutRefreshTokensInput = {
@@ -473,6 +517,8 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   workouts?: Prisma.WorkoutUncheckedCreateNestedManyWithoutUserInput
   nutritionEntries?: Prisma.NutritionEntryUncheckedCreateNestedManyWithoutUserInput
   progressEntries?: Prisma.ProgressUncheckedCreateNestedManyWithoutUserInput
+  gamificationProfile?: Prisma.GamificationProfileUncheckedCreateNestedOneWithoutUserInput
+  xpTransactions?: Prisma.XpTransactionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutRefreshTokensInput = {
@@ -502,6 +548,8 @@ export type UserUpdateWithoutRefreshTokensInput = {
   workouts?: Prisma.WorkoutUpdateManyWithoutUserNestedInput
   nutritionEntries?: Prisma.NutritionEntryUpdateManyWithoutUserNestedInput
   progressEntries?: Prisma.ProgressUpdateManyWithoutUserNestedInput
+  gamificationProfile?: Prisma.GamificationProfileUpdateOneWithoutUserNestedInput
+  xpTransactions?: Prisma.XpTransactionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRefreshTokensInput = {
@@ -515,6 +563,8 @@ export type UserUncheckedUpdateWithoutRefreshTokensInput = {
   workouts?: Prisma.WorkoutUncheckedUpdateManyWithoutUserNestedInput
   nutritionEntries?: Prisma.NutritionEntryUncheckedUpdateManyWithoutUserNestedInput
   progressEntries?: Prisma.ProgressUncheckedUpdateManyWithoutUserNestedInput
+  gamificationProfile?: Prisma.GamificationProfileUncheckedUpdateOneWithoutUserNestedInput
+  xpTransactions?: Prisma.XpTransactionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProfileInput = {
@@ -528,6 +578,8 @@ export type UserCreateWithoutProfileInput = {
   workouts?: Prisma.WorkoutCreateNestedManyWithoutUserInput
   nutritionEntries?: Prisma.NutritionEntryCreateNestedManyWithoutUserInput
   progressEntries?: Prisma.ProgressCreateNestedManyWithoutUserInput
+  gamificationProfile?: Prisma.GamificationProfileCreateNestedOneWithoutUserInput
+  xpTransactions?: Prisma.XpTransactionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProfileInput = {
@@ -541,6 +593,8 @@ export type UserUncheckedCreateWithoutProfileInput = {
   workouts?: Prisma.WorkoutUncheckedCreateNestedManyWithoutUserInput
   nutritionEntries?: Prisma.NutritionEntryUncheckedCreateNestedManyWithoutUserInput
   progressEntries?: Prisma.ProgressUncheckedCreateNestedManyWithoutUserInput
+  gamificationProfile?: Prisma.GamificationProfileUncheckedCreateNestedOneWithoutUserInput
+  xpTransactions?: Prisma.XpTransactionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProfileInput = {
@@ -570,6 +624,8 @@ export type UserUpdateWithoutProfileInput = {
   workouts?: Prisma.WorkoutUpdateManyWithoutUserNestedInput
   nutritionEntries?: Prisma.NutritionEntryUpdateManyWithoutUserNestedInput
   progressEntries?: Prisma.ProgressUpdateManyWithoutUserNestedInput
+  gamificationProfile?: Prisma.GamificationProfileUpdateOneWithoutUserNestedInput
+  xpTransactions?: Prisma.XpTransactionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProfileInput = {
@@ -583,6 +639,8 @@ export type UserUncheckedUpdateWithoutProfileInput = {
   workouts?: Prisma.WorkoutUncheckedUpdateManyWithoutUserNestedInput
   nutritionEntries?: Prisma.NutritionEntryUncheckedUpdateManyWithoutUserNestedInput
   progressEntries?: Prisma.ProgressUncheckedUpdateManyWithoutUserNestedInput
+  gamificationProfile?: Prisma.GamificationProfileUncheckedUpdateOneWithoutUserNestedInput
+  xpTransactions?: Prisma.XpTransactionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutWorkoutsInput = {
@@ -596,6 +654,8 @@ export type UserCreateWithoutWorkoutsInput = {
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   nutritionEntries?: Prisma.NutritionEntryCreateNestedManyWithoutUserInput
   progressEntries?: Prisma.ProgressCreateNestedManyWithoutUserInput
+  gamificationProfile?: Prisma.GamificationProfileCreateNestedOneWithoutUserInput
+  xpTransactions?: Prisma.XpTransactionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutWorkoutsInput = {
@@ -609,6 +669,8 @@ export type UserUncheckedCreateWithoutWorkoutsInput = {
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   nutritionEntries?: Prisma.NutritionEntryUncheckedCreateNestedManyWithoutUserInput
   progressEntries?: Prisma.ProgressUncheckedCreateNestedManyWithoutUserInput
+  gamificationProfile?: Prisma.GamificationProfileUncheckedCreateNestedOneWithoutUserInput
+  xpTransactions?: Prisma.XpTransactionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutWorkoutsInput = {
@@ -638,6 +700,8 @@ export type UserUpdateWithoutWorkoutsInput = {
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   nutritionEntries?: Prisma.NutritionEntryUpdateManyWithoutUserNestedInput
   progressEntries?: Prisma.ProgressUpdateManyWithoutUserNestedInput
+  gamificationProfile?: Prisma.GamificationProfileUpdateOneWithoutUserNestedInput
+  xpTransactions?: Prisma.XpTransactionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutWorkoutsInput = {
@@ -651,6 +715,8 @@ export type UserUncheckedUpdateWithoutWorkoutsInput = {
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   nutritionEntries?: Prisma.NutritionEntryUncheckedUpdateManyWithoutUserNestedInput
   progressEntries?: Prisma.ProgressUncheckedUpdateManyWithoutUserNestedInput
+  gamificationProfile?: Prisma.GamificationProfileUncheckedUpdateOneWithoutUserNestedInput
+  xpTransactions?: Prisma.XpTransactionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNutritionEntriesInput = {
@@ -664,6 +730,8 @@ export type UserCreateWithoutNutritionEntriesInput = {
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   workouts?: Prisma.WorkoutCreateNestedManyWithoutUserInput
   progressEntries?: Prisma.ProgressCreateNestedManyWithoutUserInput
+  gamificationProfile?: Prisma.GamificationProfileCreateNestedOneWithoutUserInput
+  xpTransactions?: Prisma.XpTransactionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNutritionEntriesInput = {
@@ -677,6 +745,8 @@ export type UserUncheckedCreateWithoutNutritionEntriesInput = {
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   workouts?: Prisma.WorkoutUncheckedCreateNestedManyWithoutUserInput
   progressEntries?: Prisma.ProgressUncheckedCreateNestedManyWithoutUserInput
+  gamificationProfile?: Prisma.GamificationProfileUncheckedCreateNestedOneWithoutUserInput
+  xpTransactions?: Prisma.XpTransactionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNutritionEntriesInput = {
@@ -706,6 +776,8 @@ export type UserUpdateWithoutNutritionEntriesInput = {
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   workouts?: Prisma.WorkoutUpdateManyWithoutUserNestedInput
   progressEntries?: Prisma.ProgressUpdateManyWithoutUserNestedInput
+  gamificationProfile?: Prisma.GamificationProfileUpdateOneWithoutUserNestedInput
+  xpTransactions?: Prisma.XpTransactionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNutritionEntriesInput = {
@@ -719,6 +791,8 @@ export type UserUncheckedUpdateWithoutNutritionEntriesInput = {
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   workouts?: Prisma.WorkoutUncheckedUpdateManyWithoutUserNestedInput
   progressEntries?: Prisma.ProgressUncheckedUpdateManyWithoutUserNestedInput
+  gamificationProfile?: Prisma.GamificationProfileUncheckedUpdateOneWithoutUserNestedInput
+  xpTransactions?: Prisma.XpTransactionUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutProgressEntriesInput = {
@@ -732,6 +806,8 @@ export type UserCreateWithoutProgressEntriesInput = {
   profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
   workouts?: Prisma.WorkoutCreateNestedManyWithoutUserInput
   nutritionEntries?: Prisma.NutritionEntryCreateNestedManyWithoutUserInput
+  gamificationProfile?: Prisma.GamificationProfileCreateNestedOneWithoutUserInput
+  xpTransactions?: Prisma.XpTransactionCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutProgressEntriesInput = {
@@ -745,6 +821,8 @@ export type UserUncheckedCreateWithoutProgressEntriesInput = {
   profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
   workouts?: Prisma.WorkoutUncheckedCreateNestedManyWithoutUserInput
   nutritionEntries?: Prisma.NutritionEntryUncheckedCreateNestedManyWithoutUserInput
+  gamificationProfile?: Prisma.GamificationProfileUncheckedCreateNestedOneWithoutUserInput
+  xpTransactions?: Prisma.XpTransactionUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutProgressEntriesInput = {
@@ -774,6 +852,8 @@ export type UserUpdateWithoutProgressEntriesInput = {
   profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
   workouts?: Prisma.WorkoutUpdateManyWithoutUserNestedInput
   nutritionEntries?: Prisma.NutritionEntryUpdateManyWithoutUserNestedInput
+  gamificationProfile?: Prisma.GamificationProfileUpdateOneWithoutUserNestedInput
+  xpTransactions?: Prisma.XpTransactionUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProgressEntriesInput = {
@@ -787,6 +867,160 @@ export type UserUncheckedUpdateWithoutProgressEntriesInput = {
   profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
   workouts?: Prisma.WorkoutUncheckedUpdateManyWithoutUserNestedInput
   nutritionEntries?: Prisma.NutritionEntryUncheckedUpdateManyWithoutUserNestedInput
+  gamificationProfile?: Prisma.GamificationProfileUncheckedUpdateOneWithoutUserNestedInput
+  xpTransactions?: Prisma.XpTransactionUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutGamificationProfileInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  workouts?: Prisma.WorkoutCreateNestedManyWithoutUserInput
+  nutritionEntries?: Prisma.NutritionEntryCreateNestedManyWithoutUserInput
+  progressEntries?: Prisma.ProgressCreateNestedManyWithoutUserInput
+  xpTransactions?: Prisma.XpTransactionCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutGamificationProfileInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  workouts?: Prisma.WorkoutUncheckedCreateNestedManyWithoutUserInput
+  nutritionEntries?: Prisma.NutritionEntryUncheckedCreateNestedManyWithoutUserInput
+  progressEntries?: Prisma.ProgressUncheckedCreateNestedManyWithoutUserInput
+  xpTransactions?: Prisma.XpTransactionUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutGamificationProfileInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutGamificationProfileInput, Prisma.UserUncheckedCreateWithoutGamificationProfileInput>
+}
+
+export type UserUpsertWithoutGamificationProfileInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutGamificationProfileInput, Prisma.UserUncheckedUpdateWithoutGamificationProfileInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutGamificationProfileInput, Prisma.UserUncheckedCreateWithoutGamificationProfileInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutGamificationProfileInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutGamificationProfileInput, Prisma.UserUncheckedUpdateWithoutGamificationProfileInput>
+}
+
+export type UserUpdateWithoutGamificationProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  workouts?: Prisma.WorkoutUpdateManyWithoutUserNestedInput
+  nutritionEntries?: Prisma.NutritionEntryUpdateManyWithoutUserNestedInput
+  progressEntries?: Prisma.ProgressUpdateManyWithoutUserNestedInput
+  xpTransactions?: Prisma.XpTransactionUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutGamificationProfileInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  workouts?: Prisma.WorkoutUncheckedUpdateManyWithoutUserNestedInput
+  nutritionEntries?: Prisma.NutritionEntryUncheckedUpdateManyWithoutUserNestedInput
+  progressEntries?: Prisma.ProgressUncheckedUpdateManyWithoutUserNestedInput
+  xpTransactions?: Prisma.XpTransactionUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutXpTransactionsInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileCreateNestedOneWithoutUserInput
+  workouts?: Prisma.WorkoutCreateNestedManyWithoutUserInput
+  nutritionEntries?: Prisma.NutritionEntryCreateNestedManyWithoutUserInput
+  progressEntries?: Prisma.ProgressCreateNestedManyWithoutUserInput
+  gamificationProfile?: Prisma.GamificationProfileCreateNestedOneWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutXpTransactionsInput = {
+  id?: string
+  email: string
+  passwordHash: string
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
+  profile?: Prisma.ProfileUncheckedCreateNestedOneWithoutUserInput
+  workouts?: Prisma.WorkoutUncheckedCreateNestedManyWithoutUserInput
+  nutritionEntries?: Prisma.NutritionEntryUncheckedCreateNestedManyWithoutUserInput
+  progressEntries?: Prisma.ProgressUncheckedCreateNestedManyWithoutUserInput
+  gamificationProfile?: Prisma.GamificationProfileUncheckedCreateNestedOneWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutXpTransactionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutXpTransactionsInput, Prisma.UserUncheckedCreateWithoutXpTransactionsInput>
+}
+
+export type UserUpsertWithoutXpTransactionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutXpTransactionsInput, Prisma.UserUncheckedUpdateWithoutXpTransactionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutXpTransactionsInput, Prisma.UserUncheckedCreateWithoutXpTransactionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutXpTransactionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutXpTransactionsInput, Prisma.UserUncheckedUpdateWithoutXpTransactionsInput>
+}
+
+export type UserUpdateWithoutXpTransactionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUpdateOneWithoutUserNestedInput
+  workouts?: Prisma.WorkoutUpdateManyWithoutUserNestedInput
+  nutritionEntries?: Prisma.NutritionEntryUpdateManyWithoutUserNestedInput
+  progressEntries?: Prisma.ProgressUpdateManyWithoutUserNestedInput
+  gamificationProfile?: Prisma.GamificationProfileUpdateOneWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutXpTransactionsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  refreshTokens?: Prisma.RefreshTokenUncheckedUpdateManyWithoutUserNestedInput
+  profile?: Prisma.ProfileUncheckedUpdateOneWithoutUserNestedInput
+  workouts?: Prisma.WorkoutUncheckedUpdateManyWithoutUserNestedInput
+  nutritionEntries?: Prisma.NutritionEntryUncheckedUpdateManyWithoutUserNestedInput
+  progressEntries?: Prisma.ProgressUncheckedUpdateManyWithoutUserNestedInput
+  gamificationProfile?: Prisma.GamificationProfileUncheckedUpdateOneWithoutUserNestedInput
 }
 
 
@@ -799,6 +1033,7 @@ export type UserCountOutputType = {
   workouts: number
   nutritionEntries: number
   progressEntries: number
+  xpTransactions: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -806,6 +1041,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   workouts?: boolean | UserCountOutputTypeCountWorkoutsArgs
   nutritionEntries?: boolean | UserCountOutputTypeCountNutritionEntriesArgs
   progressEntries?: boolean | UserCountOutputTypeCountProgressEntriesArgs
+  xpTransactions?: boolean | UserCountOutputTypeCountXpTransactionsArgs
 }
 
 /**
@@ -846,6 +1082,13 @@ export type UserCountOutputTypeCountProgressEntriesArgs<ExtArgs extends runtime.
   where?: Prisma.ProgressWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountXpTransactionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.XpTransactionWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -859,6 +1102,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   workouts?: boolean | Prisma.User$workoutsArgs<ExtArgs>
   nutritionEntries?: boolean | Prisma.User$nutritionEntriesArgs<ExtArgs>
   progressEntries?: boolean | Prisma.User$progressEntriesArgs<ExtArgs>
+  gamificationProfile?: boolean | Prisma.User$gamificationProfileArgs<ExtArgs>
+  xpTransactions?: boolean | Prisma.User$xpTransactionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -896,6 +1141,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   workouts?: boolean | Prisma.User$workoutsArgs<ExtArgs>
   nutritionEntries?: boolean | Prisma.User$nutritionEntriesArgs<ExtArgs>
   progressEntries?: boolean | Prisma.User$progressEntriesArgs<ExtArgs>
+  gamificationProfile?: boolean | Prisma.User$gamificationProfileArgs<ExtArgs>
+  xpTransactions?: boolean | Prisma.User$xpTransactionsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -909,6 +1156,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     workouts: Prisma.$WorkoutPayload<ExtArgs>[]
     nutritionEntries: Prisma.$NutritionEntryPayload<ExtArgs>[]
     progressEntries: Prisma.$ProgressPayload<ExtArgs>[]
+    gamificationProfile: Prisma.$GamificationProfilePayload<ExtArgs> | null
+    xpTransactions: Prisma.$XpTransactionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1316,6 +1565,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   workouts<T extends Prisma.User$workoutsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$workoutsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkoutPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   nutritionEntries<T extends Prisma.User$nutritionEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$nutritionEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NutritionEntryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   progressEntries<T extends Prisma.User$progressEntriesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$progressEntriesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  gamificationProfile<T extends Prisma.User$gamificationProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$gamificationProfileArgs<ExtArgs>>): Prisma.Prisma__GamificationProfileClient<runtime.Types.Result.GetResult<Prisma.$GamificationProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  xpTransactions<T extends Prisma.User$xpTransactionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$xpTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$XpTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1856,6 +2107,49 @@ export type User$progressEntriesArgs<ExtArgs extends runtime.Types.Extensions.In
   take?: number
   skip?: number
   distinct?: Prisma.ProgressScalarFieldEnum | Prisma.ProgressScalarFieldEnum[]
+}
+
+/**
+ * User.gamificationProfile
+ */
+export type User$gamificationProfileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the GamificationProfile
+   */
+  select?: Prisma.GamificationProfileSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the GamificationProfile
+   */
+  omit?: Prisma.GamificationProfileOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.GamificationProfileInclude<ExtArgs> | null
+  where?: Prisma.GamificationProfileWhereInput
+}
+
+/**
+ * User.xpTransactions
+ */
+export type User$xpTransactionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the XpTransaction
+   */
+  select?: Prisma.XpTransactionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the XpTransaction
+   */
+  omit?: Prisma.XpTransactionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.XpTransactionInclude<ExtArgs> | null
+  where?: Prisma.XpTransactionWhereInput
+  orderBy?: Prisma.XpTransactionOrderByWithRelationInput | Prisma.XpTransactionOrderByWithRelationInput[]
+  cursor?: Prisma.XpTransactionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.XpTransactionScalarFieldEnum | Prisma.XpTransactionScalarFieldEnum[]
 }
 
 /**

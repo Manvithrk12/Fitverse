@@ -57,7 +57,9 @@ export const ModelName = {
   Workout: 'Workout',
   NutritionEntry: 'NutritionEntry',
   Progress: 'Progress',
-  ProgressPhoto: 'ProgressPhoto'
+  ProgressPhoto: 'ProgressPhoto',
+  GamificationProfile: 'GamificationProfile',
+  XpTransaction: 'XpTransaction'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -181,6 +183,30 @@ export const ProgressPhotoScalarFieldEnum = {
 } as const
 
 export type ProgressPhotoScalarFieldEnum = (typeof ProgressPhotoScalarFieldEnum)[keyof typeof ProgressPhotoScalarFieldEnum]
+
+
+export const GamificationProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  totalXp: 'totalXp',
+  level: 'level',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type GamificationProfileScalarFieldEnum = (typeof GamificationProfileScalarFieldEnum)[keyof typeof GamificationProfileScalarFieldEnum]
+
+
+export const XpTransactionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  amount: 'amount',
+  eventType: 'eventType',
+  referenceId: 'referenceId',
+  createdAt: 'createdAt'
+} as const
+
+export type XpTransactionScalarFieldEnum = (typeof XpTransactionScalarFieldEnum)[keyof typeof XpTransactionScalarFieldEnum]
 
 
 export const SortOrder = {
